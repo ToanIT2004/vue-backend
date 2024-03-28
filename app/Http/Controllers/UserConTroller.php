@@ -38,10 +38,6 @@ class UserConTroller extends Controller
         $newpass = $request->input('newpass');
         $user = Users::where('email', $email)->first();
 
-        // if (!$user) {
-        //     return response()->json('Không tìm thấy tài khoản', 404);
-        // }
-
         if (!Hash::check($password, $user->password)) {
             return response()->json(['error' => 'Mật khẩu cũ không đúng'], 404);
         }

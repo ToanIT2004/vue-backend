@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserConTroller;
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\GBController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,15 +22,24 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+// Phần User
 Route::post('login', [UserController::class, 'getUser']);
 Route::post('loginAdmin', [UserController::class, 'getAdmin']);
 Route::get('getUser', [UserController::class, 'indexUser']);
 Route::get('getEmploy', [UserController::class, 'indexEmploy']);
 Route::post('addEmploy', [UserController::class, 'addEmploy']); 
 Route::get('getArchive', [UserConTroller::class, 'archive']);
-
 Route::get('restore/{id}', [UserConTroller::class, 'restore']);
-
 Route::post('search', [UserConTroller::class, 'search']);
 Route::post('changePass', [UserConTroller::class, 'changePass']);
 Route::apiResource('user', UserConTroller::class);
+
+// Phần Màu Sắc
+Route::apiResource('color', ColorController::class);
+
+// Phần Dung Lượng
+Route::apiResource('dungluong', GBController::class);
+// Phần Menu 
+Route::apiResource('menu', MenuController::class);
+
