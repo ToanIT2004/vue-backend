@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserConTroller;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\GBController;
@@ -42,4 +43,7 @@ Route::apiResource('color', ColorController::class);
 Route::apiResource('dungluong', GBController::class);
 // Phần Menu 
 Route::apiResource('menu', MenuController::class);
+
+// Phần Products 
+Route::apiResource('product', ProductController::class);
 
