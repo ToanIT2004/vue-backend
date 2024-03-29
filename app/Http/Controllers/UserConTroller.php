@@ -14,16 +14,6 @@ class UserConTroller extends Controller
         return response()->json(users::all(), 200);
     }
 
-    //Tìm kiếm nhân viên
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-        $user = Users::where('email', 'LIKE', '%' . $search . '%')
-            ->where('is_admin', '=', 0)
-            ->get();
-        return response()->json($user, 200);
-    }
-
     public function changePass(Request $request)
     {
         $validator = Validator::make($request->all(), [

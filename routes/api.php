@@ -32,7 +32,6 @@ Route::get('getEmploy', [UserController::class, 'indexEmploy']);
 Route::post('addEmploy', [UserController::class, 'addEmploy']); 
 Route::get('getArchive', [UserConTroller::class, 'archive']);
 Route::get('restore/{id}', [UserConTroller::class, 'restore']);
-Route::post('search', [UserConTroller::class, 'search']);
 Route::post('changePass', [UserConTroller::class, 'changePass']);
 Route::apiResource('user', UserConTroller::class);
 
