@@ -23,10 +23,12 @@ class GBController extends Controller
     public function store(Request $request)
     {
         $ValidatorData = Validator::make($request->all(), [
-            'GB' => 'required|unique:dungluongs'
+            'GB' => 'required|numeric|unique:dungluongs'
         ], [
             'GB.required' => 'Dung lượng không được để trống',
-            'GB.unique' => 'Đã tồn tại'
+            'GB.unique' => 'Đã tồn tại',
+            'GB.numeric' => 'Dung lượng phải nhập số'
+
         ]); 
 
         if($ValidatorData->fails()) {

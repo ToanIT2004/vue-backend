@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class dungluong extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'GB'
      ];

@@ -25,7 +25,7 @@ class MenuController extends Controller
         $ValidatorData = Validator::make($request->all(), [
             'tenloai' => 'required|unique:menus'
         ], [
-            'tenloai.required' => 'Dung lượng không được để trống',
+            'tenloai.required' => 'Tên loại không được để trống',
             'tenloai.unique' => 'Đã tồn tại'
         ]); 
 
