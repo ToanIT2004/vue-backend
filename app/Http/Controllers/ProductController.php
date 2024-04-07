@@ -12,14 +12,8 @@ use App\Models\Menu; // Import model Menu
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        // $products = sanpham::all();
-        // $menus = Menu::all();
-        // $products = Sanpham::with('menu')->get();
         // Xem chỗ này
         //Dạng 1
         // $products = \DB::table('sanphams')
@@ -233,7 +227,55 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $ValidateData = Validator::make($request->all(),[
+            'idmenu' => "required",
+            'idcolor' => "required",
+            'idGB' => "required",
+            'tensp' => "required",
+            'mota' => "required",
+            'img' => "required|image",
+            'img1' => "required|image",
+            'img2' => "required|image",
+            'img3' => "required|image",
+            'dongia' => "required|numeric",
+            'giamgia' => "required|numeric",
+            'slton' => "required|numeric",
+        ], [
+            'idmenu.required' => "Tên loại không được để trống",
+            'idcolor.required' => "Màu sắckhông được để trống",
+            'idGB.required' => "Dung lượng không được để trống",
+            'tensp.required' => "Tên sản phẩm không được để trống",
+            'mota.required' => "Mô tả không được để trống",
+            'img.required' => "Hình ảnh không được để trống",
+            'img1.required' => "Hình ảnh không được để trống",
+            'img2.required' => "Hình ảnh không được để trống",
+            'img3.required' => "Hình ảnh không được để trống",
+            'dongia.required' => "Đơn giá không được để trống",
+            'giamgia.required' => "Giảm giá không được để trống",
+            'slton.required' => "Số lượng tồn không được để trống",
+            'dongia.numeric' => "Đơn giá phải là số",
+            'giamgia.numeric' => "Giảm giá phải là số",
+            'slton.numeric' => "Số lượng tồn phải là số",
+            'img.image' => 'Hình ảnh phải là một tệp hình ảnh',
+            'img1.image' => 'Hình ảnh phải là một tệp hình ảnh',
+            'img2.image' => 'Hình ảnh phải là một tệp hình ảnh',
+            'img3.image' => 'Hình ảnh phải là một tệp hình ảnh',
+        ]);
+
+        if($ValidateData->fails()) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $ValidateData->errors()],422);
+        }
+
+        $product = sanpham::find($id);
+        if($product) {
+            $product->update();
+            return $product->json($product, 200);
+        }else {
+            return response()->json(
+                ['message' => "Product not found"],
+                404
+            );
+        }
     }
 
     /**
@@ -243,6 +285,7 @@ class ProductController extends Controller
     {
         $pro = sanpham::find($id);
         if($pro) {
+            $pro->delete();
             return response()->json('Đã xóa thành công', 201);
         }
     }

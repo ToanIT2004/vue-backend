@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserConTroller;
@@ -45,4 +47,14 @@ Route::apiResource('menu', MenuController::class);
 
 // Phần Products 
 Route::apiResource('product', ProductController::class);
+
+// Phần cart
+Route::apiResource('cart', CartController::class);
+
+// Phần đơn hàng 
+Route::apiResource('donhang', DonHangController::class);
+
+
+
+
 
